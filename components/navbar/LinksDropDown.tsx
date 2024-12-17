@@ -11,11 +11,9 @@ import { Button } from "../ui/button";
 import { links } from "@/utils/links";
 import UserIcon from "./UserIcon";
 import SignOutLink from "./SignOutLink";
-import { SignInButton, SignUpButton, SignedIn, SignedOut } from "@clerk/nextjs";
-import { auth } from "@clerk/nextjs/server";
 
 function LinksDropdown() {
-    const { userId } = auth();
+    const userId = "11111111111111111111111";
     const isAdmin = userId === process.env.ADMIN_USER_ID;
     return (
         <DropdownMenu>
@@ -26,35 +24,7 @@ function LinksDropdown() {
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-48" align="start" sideOffset={10}>
-                <SignedOut>
-                    <DropdownMenuItem>
-                        <SignInButton mode="modal">
-                            <button className="w-full text-left">Login</button>
-                        </SignInButton>
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>
-                        <SignUpButton mode="modal">
-                            <button className="w-full text-left">Register</button>
-                        </SignUpButton>
-                    </DropdownMenuItem>
-                </SignedOut>
-                <SignedIn>
-                    {links.map((link) => {
-                        if (link.label === 'dashboard' && !isAdmin) return null;
-                        return (
-                            <DropdownMenuItem key={link.href}>
-                                <Link href={link.href} className="capitalize w-full">
-                                    {link.label}
-                                </Link>
-                            </DropdownMenuItem>
-                        );
-                    })}
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>
-                        <SignOutLink />
-                    </DropdownMenuItem>
-                </SignedIn>
+                login
             </DropdownMenuContent>
         </DropdownMenu>
     );

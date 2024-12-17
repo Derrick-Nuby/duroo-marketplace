@@ -8,7 +8,7 @@ function HomePage() {
     <>
       <Hero />
       <Suspense fallback={<LoadingContainer />}>
-        <FeaturedProducts />
+        {/* <FeaturedProducts /> */}
       </Suspense >
     </>
   );
